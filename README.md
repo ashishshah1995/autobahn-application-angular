@@ -15,7 +15,7 @@ Display lists of Highway's, data is fetched from API where user's can browse the
 
 ## Live Demo
 
-Link - 
+Link - https://autobahn-application.netlify.app/highways
 
 ## Application Architecture
 
@@ -34,7 +34,7 @@ Building this project requires Node.JS and npm installation.
 
 - Clone the repository
 
-  ` git clone `
+  ` git clone https://github.com/ashishshah1995/autobahn-application-angular`
 
 - To install all the dependencies.
 
@@ -52,9 +52,9 @@ Building this project requires Node.JS and npm installation.
 
   ## Deploying
 
-Once the app is built, the static files ready for deployment can be found at the `/dist` directory.
+  Once the app is built, the static files ready for deployment can be found at the `/dist` directory.
 
-Upload them to any static file host, and configure it to direct all requests to `index.html`.
+  Upload them to any static file host, and configure it to direct all requests to `index.html`.
 
   # Built With
 
