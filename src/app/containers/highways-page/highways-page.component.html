@@ -1,0 +1,37 @@
+<h1 class="is-size-1 has-text-centered has-text-dark is-underlined">
+  Highways
+</h1>
+<div class="columns mt-5 is-centered">
+  <div class="column">
+    <div class="cart">
+      <div class="card-image has-text-centered px-6"></div>
+      <div>
+        <ul class="columns is-multiline mt-4">
+          <li
+            *ngFor="
+              let highway of highways
+                | paginate: { itemsPerPage: 12, currentPage: page }
+            "
+            class="card-content column is-one-quarter"
+          >
+            <img
+              src="https://sf1.autoplus.fr/wp-content/uploads/autoplus/2021/06/garching_bundesautobahn_9.jpg"
+              style="width: 350px"
+            />
+            <app-highway-card [highway]="highway"></app-highway-card>
+            <div class="card-footer">
+              <p class="card-footer-item has-background-light">
+                <a
+                  [routerLink]="['', 'highways', highway.id]"
+                  class="has-text-link"
+                  >View</a
+                >
+              </p>
+            </div>
+          </li>
+        </ul>
+        <pagination-controls (pageChange)="page = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>

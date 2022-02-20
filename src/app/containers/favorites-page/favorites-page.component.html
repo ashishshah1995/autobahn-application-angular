@@ -1,0 +1,14 @@
+<h1 class="is-size-1 has-text-dark">List of Favorite Highways</h1>
+<ul class="columns is-multiline mt-4">
+  <li
+    *ngFor="let favoriteDetails of favoritesList"
+    class="column is-one-third"
+  >
+    <app-highway-card [highway]="{ id: favoriteDetails.highwayId, favoriteDetails }"></app-highway-card>
+  </li>
+</ul>
+<div class="buttons">
+  <!-- This button is only visible if there are favorited highways. -->
+  <button class="button is-danger mt-4" (click)="clearFavorites()"
+    [disabled]="(this.favoritesList?.length ?? 0) === 0">Clear all</button>
+</div>

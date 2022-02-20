@@ -1,0 +1,33 @@
+<!-- If no roadwork has been provided, don't render anytihng. -->
+<div *ngIf="roadwork !== undefined">
+  <h3 class="is-size-4 has-text-weight-semibold message-header">
+    {{ roadwork.title }}
+  </h3>
+  <h4 class="is-size-5 has-text-weight-semibold">
+    <div class="message-body has-background-light">
+      {{ roadwork.subtitle }}
+    </div>
+  </h4>
+  <dl>
+    <dt class="has-text-weight-bold is-underlined message">
+      <div class="message-header">Coordinates</div>
+    </dt>
+
+    <dd>
+      <div class="message-body has-background-light">
+        Lat: {{ roadwork.coordinate.lat }}, Long: {{ roadwork.coordinate.long }}
+      </div>
+    </dd>
+    <dt class="has-text-weight-bold is-underlined message">
+      <div class="message-header">Description</div>
+    </dt>
+    <dd>
+      <!-- The description is provided as an array, so I render it as a list. -->
+      <ul class="message-body has-background-light">
+        <li *ngFor="let description of roadwork.description">
+          {{ description }}
+        </li>
+      </ul>
+    </dd>
+  </dl>
+</div>

@@ -1,0 +1,101 @@
+<div>
+  <h1
+    class="is-size-1 has-text-white has-text-centered is-underlined"
+    style="background: radial-gradient(black, transparent)"
+  >
+    {{ "Highway Name - " + highwayId }}
+  </h1>
+
+  <!--
+  Only show this section if the highway's favorite details have been loaded.
+  favoriteDetails may still be null here, if the highway is not favorited.
+ -->
+  <section *ngIf="this.favoriteDetails !== undefined">
+    <!--
+    Render separate templates based on whether the highway is favorited or not.
+  -->
+    <ng-container
+      *ngIf="this.favoriteDetails !== null; then favorited; else notFavorited"
+    ></ng-container>
+
+    <ng-template #notFavorited>
+      <div class="buttons py-6">
+        <!-- The highway is not favorited, so allow the user to favorite it. -->
+        <button class="button is-success is-rounded" (click)="addToFavorites()">
+          Add to Favorites
+        </button>
+      </div>
+    </ng-template>
+    <ng-template #favorited>
+      <div class="buttons py-1 my-3">
+        <!-- Allow the user to unfavorite the highway. -->
+        <button
+          *ngIf="!firstFavoriteInsertion"
+          class="button is-danger"
+          (click)="removeFromFavorites()"
+        >
+          Remove from Favorites
+        </button>
+      </div>
+
+      <!-- Use Angular's Reactive Forms to bind the content of this form to the favoriteDetailsForm form group. -->
+      <form [formGroup]="favoriteDetailsForm">
+        <div class="field">
+          <label class="label">Comment</label>
+          <div class="control">
+            <textarea class="textarea" formControlName="comment"></textarea>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Color code</label>
+          <div class="control">
+            <input class="input" type="text" formControlName="colorCode" />
+          </div>
+        </div>
+        <!--
+        Allow the user to save changes to the favorite details.
+        The button is disabled if there are no changes to be made.
+      -->
+        <button
+          class="button is-success is-rounded"
+          (click)="saveFavoriteChanges()"
+          [disabled]="
+            favoriteDetailsForm.pristine || favoriteDetailsForm.invalid
+          "
+        >
+          Save
+        </button>
+      </form>
+    </ng-template>
+  </section>
+
+  <!-- Only display this section if there are roadworks. -->
+  <ng-container *ngIf="isLoaded; else available"
+    ><section
+      class="has-text-weight-bold is-size-3 2rem"
+      style="color: rgb(72, 38, 78)"
+    >
+      Loading...
+    </section>
+  </ng-container>
+  <ng-template #available>
+    <section *ngIf="roadworks && roadworks.length > 0; else noData">
+      <h2 class="is-size-2 is-underlined has-text-danger">Roadworks</h2>
+      <div class="columns is-multiline">
+        <app-roadwork-card
+          *ngFor="let roadwork of roadworks"
+          [roadwork]="roadwork"
+          class="column is-half has-text-white"
+        ></app-roadwork-card>
+      </div>
+    </section>
+  </ng-template>
+  <ng-template #noData>
+    <section
+      class="has-text-weight-bold is-size-3 2rem"
+      style="color: rgb(72, 38, 78)"
+    >
+      No Data available
+    </section></ng-template
+  >
+</div>

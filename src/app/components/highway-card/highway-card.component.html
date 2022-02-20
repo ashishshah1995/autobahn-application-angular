@@ -1,0 +1,23 @@
+<div>
+  <a
+    *ngIf="highway !== undefined"
+    [routerLink]="['', 'highways', highway.id]"
+    class="box"
+  >
+    <h2 class="is-size-5">
+      <span class="has-text-weight-bold">{{ highway.id }}</span>
+      <!-- Indicate if this highway is favorited. -->
+      <span class="has-text-info" *ngIf="highway.favoriteDetails !== null">
+        Favorite</span
+      >
+    </h2>
+    <!-- Favorite details, only shown if the highway is favorited. -->
+    <dl *ngIf="highway.favoriteDetails !== null" class="mt-4">
+      <dt class="has-text-weight-semibold">Color code</dt>
+      <dd>{{ highway.favoriteDetails.colorCode }}</dd>
+
+      <dt class="has-text-weight-semibold">Comment</dt>
+      <dd>{{ highway.favoriteDetails.comment }}</dd>
+    </dl>
+  </a>
+</div>
