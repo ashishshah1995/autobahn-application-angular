@@ -15,7 +15,7 @@ Display lists of Highway's, data is fetched from API where user's can browse the
 
 ## Live Demo
 
-Link - https://autobahn-application.netlify.app/highways
+Link - https://autobahn-application.netlify.app/
 
 ## Application Architecture
 
